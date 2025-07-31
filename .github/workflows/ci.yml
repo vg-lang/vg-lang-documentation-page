@@ -19,8 +19,8 @@ jobs:
         run: |
           echo "=== Repository root ==="
           ls -la
-          echo "=== vg-lang-docs directory ==="
-          ls -la vg-lang-docs/
+          echo "=== docs directory ==="
+          ls -la docs/
       
       # Build Documentation
       - uses: actions/setup-python@v4
@@ -33,21 +33,20 @@ jobs:
       - name: Debug - Check mkdocs.yml
         run: |
           echo "=== Checking mkdocs.yml ==="
-          cat vg-lang-docs/mkdocs.yml
+          cat mkdocs.yml
       - name: Build documentation
         run: |
           echo "=== Building documentation ==="
-          cd vg-lang-docs
           mkdocs build --verbose
       - name: Debug - Check docs build
         run: |
           echo "=== Checking docs build ==="
-          ls -la vg-lang-docs/
-          if [ -d "vg-lang-docs/site" ]; then
-            echo "vg-lang-docs/site exists"
-            ls -la vg-lang-docs/site/
+          ls -la
+          if [ -d "site" ]; then
+            echo "site exists"
+            ls -la site/
           else
-            echo "vg-lang-docs/site does not exist"
+            echo "site does not exist"
             echo "Checking if site directory was created elsewhere:"
             find . -name "site" -type d 2>/dev/null || echo "No site directory found"
           fi
@@ -59,19 +58,19 @@ jobs:
           mkdir -p deploy
           
           # Copy documentation (root) - use site folder directly
-          echo "Copying vg-lang-docs/site to deploy/"
-          if [ -d "vg-lang-docs/site" ]; then
-            cp -r vg-lang-docs/site/* deploy/
+          echo "Copying site to deploy/"
+          if [ -d "site" ]; then
+            cp -r site/* deploy/
           else
-            echo "ERROR: vg-lang-docs/site does not exist!"
+            echo "ERROR: site does not exist!"
             exit 1
           fi
           
           # Copy CNAME files - with error checking
-          if [ -f "vg-lang-docs/docs/CNAME" ]; then
-            cp vg-lang-docs/docs/CNAME deploy/
+          if [ -f "CNAME" ]; then
+            cp CNAME deploy/
           else
-            echo "WARNING: vg-lang-docs/docs/CNAME not found"
+            echo "WARNING: CNAME not found"
           fi
           
           echo "=== Final deployment structure ==="
