@@ -1,0 +1,85 @@
+site_name: VG Language Documentation
+site_url: "https://docs.vglang.com"
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+      primary: "#212121"  # Very dark grey
+      accent: amber
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+      primary: "#121212"  # Almost black
+      accent: amber
+  logo: assets/logo.png
+  favicon: favicon.ico
+
+extra_css:
+  - assets/stylesheets/custom.css
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Introduction:
+      - Overview: Introduction.md
+      - Installation: Installation.md
+      - Commands: Commands.md
+  - Syntax:
+      - Statements: Statements.md
+      - Expressions: Expressions.md
+      - Control Flow:
+          - If Statements: if-statements.md
+          - Loops:
+              - For Loop: for-loop.md
+              - While Loop: while-loop.md
+              - Do-While Loop: do-while-loop.md
+      - Variables:
+          - Variable Declaration: Variables.md
+          - Constants: Constants.md
+      - Arrays: Arrays.md
+      - Comments: Comments.md
+  - Libraries:
+      - Overview: Libraries.md
+      - Package Manager: PackageManager.md
+  - Tools:
+      - Documentation Generator: DocumentationGenerator.md
+  - Advanced:
+      - Functions: Functions.md
+      - Error Handling: ErrorHandling.md
+      - Structs and Enums: StructsAndEnums.md
+      - System Calls: SystemCalls.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
